@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hibou Pro - Criação de Sites e Landing Pages Profissionais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-black: #0d0d0d;
+            --secondary-black: #1a1a1a;
+            --soft-black: #2a2a2a;
+            --accent-orange: #ff6b35;
+            --light-orange: #ff8c61;
+            --dark-orange: #e55a2b;
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8b8;
+            --text-muted: #8a8a8a;
+            --border: #333333;
+            --card-radius: 15px; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--primary-black);
+            color: var(--text-secondary);
+            overflow-x: hidden;
+            line-height: 1.7;
+            font-weight: 300;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        /* Navegação */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+
+        .logo span {
+            color: var(--accent-orange);
+            font-style: italic;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            margin-left: auto;
+            padding-left: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-orange);
+        }
+
+        .nav-social {
+            font-size: 1.2rem;
+            margin-left: 1.5rem;
+            color: var(--text-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-social:hover {
+            color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        /* Hero com Tag de Imagem */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 6%;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--primary-black);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.2) blur(3px);
+            transform: scale(1.1);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, var(--primary-black));
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 5vw, 4.5rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-orange);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            line-height: 1.8;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid var(--accent-orange);
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            color: var(--text-primary);
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.3);
+            transform: translateY(-2px);
+            background: var(--accent-orange);
+        }
+
+        /* Serviços */
+        .services {
+            padding: 8rem 6%;
+            background: var(--secondary-black);
+            position: relative;
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin: 0 auto 5rem;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--primary-black);
+            padding: 3rem;
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .service-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: rgba(255, 107, 53, 0.2);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 0.7rem 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .promo-badge {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--accent-orange);
+            padding: 0.4rem 1rem;
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .service-cta {
+            display: inline-block;
+            margin-left: 10px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-bottom: 1px solid var(--accent-orange);
+            transition: opacity 0.3s;
+        }
+        
+        .service-cta:hover {
+            opacity: 0.7;
+        }
+
+        /* Pacotes */
+        .packages {
+            padding: 8rem 6%;
+            background: var(--primary-black);
+        }
+
+        .package-card {
+            background: var(--secondary-black);
+            padding: 5rem 3rem 4rem 3rem;
+            border: 1px solid var(--accent-orange);
+            border-radius: var(--card-radius);
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: var(--accent-orange);
+            color: var(--text-primary);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .package-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--text-primary);
+        }
+
+        .package-card .price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--accent-orange);
+            margin: 2rem 0;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 2.5rem 0;
+            text-align: left;
+        }
+
+        .package-features li {
+            padding: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .package-features li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+        }
+
+        /* Sobre */
+        .about {
+            padding: 8rem 6%;
+            background: var(--secondary-black);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--accent-orange);
+            margin: 4rem 0;
+        }
+
+        .why-us {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .why-card {
+            background: var(--primary-black);
+            padding: 2rem;
+            border-left: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 0 var(--card-radius) var(--card-radius) 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 6%;
+            background: var(--primary-black);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .footer-mail {
+            display: inline-block;
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-mail:hover {
+            transform: scale(1.1);
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--accent-orange);
+            z-index: 10000;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 5%; }
+            nav ul { display: flex; gap: 1rem; }
+            nav ul li:not(:last-child) { display: none; } /* Esconde links no mobile exceto o social */
+            .hero, .services, .packages, .about { padding: 6rem 5% 4rem 5%; }
+            .hero h1 { font-size: 2.2rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .service-card { padding: 2rem 1.5rem; }
+            .package-card { padding: 4rem 1.5rem 3rem 1.5rem; width: 100%; }
+            .package-features li { font-size: 0.85rem; padding-left: 1.5rem; }
+            .why-us { grid-template-columns: 1fr; }
+            body { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <nav>
+        <div class="logo">Hibou<span>Pro</span></div>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#pacotes">Pacotes</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="https://www.instagram.com/hiboupro?igsh=ZWp1NTA5NnlxOTg1&utm_source=qr" target="_blank" class="nav-social"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="banner.jpg" alt="Background Hibou Pro">
+        </div>
+        <div class="hero-content">
+            <h1>Sua Presença Digital <span class="highlight">Profissional</span></h1>
+            <p>Desenvolvemos sites e landing pages sob medida para elevar seu negócio ao próximo nível. Design refinado, resultados mensuráveis.</p>
+            <a href="#servicos" class="cta-button">Conheça Nossos Serviços</a>
+        </div>
+    </section>
+
+    <section class="services" id="servicos">
+        <div class="section-header">
+            <div class="section-label">O Que Fazemos</div>
+            <h2 class="section-title">Serviços Especializados</h2>
+            <p class="section-description">Soluções digitais pensadas estrategicamente para empresas e profissionais independentes</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-number">01</div>
+                <h3>Sites Profissionais</h3>
+                <p>Desenvolvemos sites completos e responsivos que representam sua marca com sofisticação e modernidade.</p>
+                <ul class="service-features">
+                    <li>Design exclusivo e personalizado</li>
+                    <li>Totalmente responsivo</li>
+                    <li>Otimizado para performance</li>
+                    <li>Interface intuitiva</li>
+                </ul>
+                <span class="promo-badge">Preços Promocionais</span>
+                <a href="https://wa.me/5599991036490?text=Olá,%20quero%20fazer%20um%20orçamento%20grátis." target="_blank" class="service-cta">Solicitar via WhatsApp</a>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-number">02</div>
+                <h3>Landing Pages</h3>
+                <p>Páginas estratégicas de alta conversão para capturar leads, lançar produtos e promover serviços com eficácia.</p>
+                <ul class="service-features">
+                    <li>Foco em conversão</li>
+                    <li>Design persuasivo</li>
+                    <li>Carregamento rápido</li>
+                    <li>Integração com ferramentas</li>
+                </ul>
+                <span class="promo-badge">Preços Promocionais</span>
+                <a href="https://wa.me/5599991036490?text=Olá,%20quero%20fazer%20um%20orçamento%20grátis." target="_blank" class="service-cta">Solicitar via WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="packages" id="pacotes">
+        <div class="section-header">
+            <div class="section-label">Economia Inteligente</div>
+            <h2 class="section-title">Pacote Completo</h2>
+            <p class="section-description">Combine site profissional e landing page em um único pacote especial</p>
+        </div>
+        
+        <div class="package-card fade-in">
+            <div class="package-label">Combo</div>
+            <h3>Pacote Premium</h3>
+            <p class="subtitle">Site Profissional + Landing Page</p>
+            <div class="price">Sob Consulta</div>
+            <ul class="package-features">
+                <li>Site profissional completo</li>
+                <li>Landing page de alta conversão</li>
+                <li>Design exclusivo para ambos</li>
+                <li>Totalmente responsivo</li>
+                <li>Otimização de performance</li>
+                <li>Suporte pós-lançamento</li>
+                <li>Desconto especial no combo</li>
+            </ul>
+            <a href="https://wa.me/5599991036490?text=Olá,%20quero%20fazer%20um%20orçamento%20grátis." target="_blank" class="cta-button">Solicitar Orçamento</a>
+        </div>
+    </section>
+
+    <section class="about" id="sobre">
+        <div class="section-header">
+            <div class="section-label">Nossa História</div>
+            <h2 class="section-title">Sobre a Hibou Pro</h2>
+        </div>
+        
+        <div class="about-content fade-in">
+            <p class="about-text">
+                Fundada em <strong>2025</strong>, a Hibou Pro foi criada com um propósito claro: <strong>elevar o nível de profissionalismo</strong> de pequenas empresas e profissionais autônomos através de uma presença digital sofisticada e acessível.
+            </p>
+            <p class="about-text">
+                Especializamo-nos em criar <strong>sites diretos e eficazes</strong> para quem está começando ou renovando sua imagem online. Seja um portfólio pessoal ou um site empresarial, nosso compromisso é entregar soluções que funcionam sem complexidade desnecessária.
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="section-header" style="margin-bottom: 3rem;">
+                <h3 class="section-title" style="font-size: 2rem;">Por Que Hibou Pro?</h3>
+            </div>
+            
+            <div class="why-us">
+                <div class="why-card fade-in">
+                    <h4>Entrega Ágil</h4>
+                    <p>Seu projeto sai do papel com rapidez e eficiência, sem comprometer a qualidade.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <h4>Investimento Acessível</h4>
+                    <p>Qualidade profissional com valores justos e pacotes vantajosos.</p>
+                </div>
+                <div class="why-card fade-in">
+                    <h4>Design Responsivo</h4>
+                    <p>Todos os nossos projetos funcionam perfeitamente em dispositivos móveis e desktops.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="mailto:sitehiboupro@gmail.com" class="footer-mail" title="Enviar E-mail">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <div class="logo">Hibou<span>Pro</span></div>
+        <p>&copy; 2025 Hibou Pro. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith("#")) {
+                    e.preventDefault();
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
