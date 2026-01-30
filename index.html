@@ -116,7 +116,7 @@
             transform: translateY(-2px);
         }
 
-        /* Hero com Tag de Imagem */
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -325,14 +325,76 @@
             opacity: 0.7;
         }
 
-        /* Pacotes */
-        .packages {
+        /* --- SEÇÃO PORTFÓLIO --- */
+        .portfolio {
             padding: 8rem 6%;
             background: var(--primary-black);
         }
 
-        .package-card {
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            aspect-ratio: 1/1; /* Alterado para quadrado */
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem preencha o quadrado */
+            transition: transform 0.6s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .counter-box {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 3rem;
             background: var(--secondary-black);
+            border-radius: var(--card-radius);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(255, 107, 53, 0.2);
+        }
+
+        .counter-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            color: var(--accent-orange);
+            font-weight: 700;
+            display: block;
+            line-height: 1;
+        }
+
+        .counter-text {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0.5rem;
+        }
+
+        /* Pacotes */
+        .packages {
+            padding: 8rem 6%;
+            background: var(--secondary-black);
+        }
+
+        .package-card {
+            background: var(--primary-black);
             padding: 5rem 3rem 4rem 3rem;
             border: 1px solid var(--accent-orange);
             border-radius: var(--card-radius);
@@ -473,10 +535,10 @@
         @media (max-width: 768px) {
             nav { padding: 1rem 5%; }
             nav ul { display: flex; gap: 1rem; }
-            nav ul li:not(:last-child) { display: none; } /* Esconde links no mobile exceto o social */
-            .hero, .services, .packages, .about { padding: 6rem 5% 4rem 5%; }
+            nav ul li:not(:last-child) { display: none; }
+            .hero, .services, .portfolio, .packages, .about { padding: 6rem 5% 4rem 5%; }
             .hero h1 { font-size: 2.2rem; }
-            .services-grid { grid-template-columns: 1fr; }
+            .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
             .service-card { padding: 2rem 1.5rem; }
             .package-card { padding: 4rem 1.5rem 3rem 1.5rem; width: 100%; }
             .package-features li { font-size: 0.85rem; padding-left: 1.5rem; }
@@ -493,6 +555,7 @@
         <ul>
             <li><a href="#home">Início</a></li>
             <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
             <li><a href="#pacotes">Pacotes</a></li>
             <li><a href="#sobre">Sobre</a></li>
             <li><a href="https://www.instagram.com/hiboupro?igsh=ZWp1NTA5NnlxOTg1&utm_source=qr" target="_blank" class="nav-social"><i class="fab fa-instagram"></i></a></li>
@@ -545,6 +608,28 @@
                 <span class="promo-badge">Preços Promocionais</span>
                 <a href="https://wa.me/5599991036490?text=Olá,%20quero%20fazer%20um%20orçamento%20grátis." target="_blank" class="service-cta">Solicitar via WhatsApp</a>
             </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="section-header">
+            <div class="section-label">Portfólio</div>
+            <h2 class="section-title">Projetos Recentes</h2>
+            <p class="section-description">Uma amostra da qualidade e sofisticação que entregamos aos nossos clientes.</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-item fade-in">
+                <img src="trampo1.jpeg" alt="Projeto de Site 1">
+            </div>
+            <div class="portfolio-item fade-in">
+                <img src="trampo2.jpeg" alt="Projeto de Site 2">
+            </div>
+        </div>
+
+        <div class="counter-box fade-in">
+            <span class="counter-number">+20</span>
+            <span class="counter-text">Sites Criados com Sucesso</span>
         </div>
     </section>
 
